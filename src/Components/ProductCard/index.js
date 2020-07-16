@@ -16,7 +16,7 @@ import Counter from '../Counter'
 import ActionButton from '../ActionButton'
 import EditIcon from '../../assets/EditIcon'
 
-const ProductCard = ({ name, description, price, gift, toggleModal }) => {  
+const ProductCard = ({ name, description, price, gift, toggleModal, AddCart }) => {      
      
     return (            
         <>          
@@ -36,7 +36,7 @@ const ProductCard = ({ name, description, price, gift, toggleModal }) => {
 
             <CartActionsContainer>
                 <Counter />
-                <ActionButton label="ADD"/>
+                <ActionButton type="button" label="ADD" AddCart={AddCart}/>
             </CartActionsContainer>            
         </ProductCardContainer>   
         </>                                     

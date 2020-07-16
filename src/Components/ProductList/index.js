@@ -3,13 +3,15 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import {ProductsContainer} from './styles'
 
-import { getProducts, toggleActualProduct} from '../../store/actions/Products'
+import { getProducts, toggleActualProduct, addToCart} from '../../store/actions/Products'
 
 import ProductCard from '../ProductCard'
 import ModalEdit from '../ModalEdit'
+import api from '../../services/api'
 
 const ProductList = () => {  
     const products = useSelector(state => state.products.products)
+    const cart = useSelector(state => state.products.cart)    
     
     const[isOpen, setOpen] = useState(false)
     
@@ -19,11 +21,21 @@ const ProductList = () => {
         dispatch(toggleActualProduct(product))    
         setOpen(!isOpen)         
     }
-   
+
+    const AddCart = (product) => {
+        const {name, price, _id} = product
+        const cartProduct = {
+            name,
+            price,
+            _id
+        }
+        dispatch(addToCart(cartProduct))                 
+    }
+       
     useEffect(() => {
         dispatch(getProducts())
-    }, [])
-                
+    }, [])    
+                    
     return(
         <>       
         {isOpen && <ModalEdit toggleModal={() => toggleModal({})}/>}
@@ -32,6 +44,7 @@ const ProductList = () => {
                 <ProductCard                                        
                     key={i}
                     toggleModal={() => toggleModal(product)}  
+                    AddCart={() => AddCart(product)}  
                     id={product._id}                  
                     name={product.name} 
                     gift={product.gift} 

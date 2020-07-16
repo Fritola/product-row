@@ -2,9 +2,12 @@ import React from 'react'
 
 import {Button} from './style'
 
-const ActionButton = ({label}) => {
+const ActionButton = ({label, AddCart}) => {
+    
     return(
-        <Button>{label}</Button>
+        <Button onClick={AddCart}>
+            {label}
+        </Button>
     )
 }
 

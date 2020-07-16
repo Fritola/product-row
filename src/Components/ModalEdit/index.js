@@ -7,6 +7,7 @@ import api from '../../services/api'
 
 const ModalEdit = ({toggleModal}) => {
     const currentProduct = useSelector(state => state.products.currentProduct)
+    const products = useSelector(state => state.products.products)
     const dispatch = useDispatch()     
 
     const handleInput = (e) => {
@@ -17,9 +18,14 @@ const ModalEdit = ({toggleModal}) => {
         }))
     }
 
-    const editProduct = () => {          
-        dispatch(editProductRequest())
-        toggleModal()        
+    const editProduct = () => {                  
+        api.put(`/product/${currentProduct._id}`, {    
+        ...currentProduct
+        })                              
+        const foundIndexProduct = products.findIndex(product => currentProduct._id == product._id)                                                
+        products[foundIndexProduct] = currentProduct                
+        dispatch(loadedProduct(products))                        
+        toggleModal()                  
     }
 
     const closeModal = (e) => {

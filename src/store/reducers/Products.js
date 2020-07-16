@@ -1,21 +1,16 @@
 const INITIAL_STATE = {
     products: [
-        {
-            name: "Heineken",
-            quantity: 2,
-            _id: 1
-        },
-        {
-            name :"Brahma",
-            quantity: 1,
-            _id: 2
-        }
+        
     ],
     currentProduct: {
         name :"Brahma",
         quantity: 1,
         _id: 2
-    }   
+    },
+    cart: [
+        
+    ]
+    
 }
        
 export default function products(state = INITIAL_STATE, action) {
@@ -25,6 +20,9 @@ export default function products(state = INITIAL_STATE, action) {
             break        
         case 'TOGGLE_ACTUAL_PRODUCT':
             return {...state, currentProduct: action.currentProduct}
+            break
+        case 'LOAD_CART':
+            return {...state, cart: [...state.cart, action.product]}
             break
         default:
             return state
