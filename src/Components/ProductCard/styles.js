@@ -6,6 +6,7 @@ export const ProductCardContainer = styled.div`
     align-items: center;    
     flex-direction: column;
     width: 250px;
+    margin-right: 10px;
     height: 380px;
     border: solid 1px #ccc;
 `
