@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 import { 
     ProductCardContainer, 
@@ -16,15 +16,12 @@ import Counter from '../Counter'
 import ActionButton from '../ActionButton'
 import EditIcon from '../../assets/EditIcon'
 
-const ProductCard = ({ name, description, price, gift, id }) => {
-
-    const editProduct = (id) => {
-        console.log('clicado no id', id)
-    }
-
-    return (                            
-        <ProductCardContainer>
-            <IconContainer onClick={() => editProduct(id)}>
+const ProductCard = ({ name, description, price, gift, toggleModal }) => {  
+     
+    return (            
+        <>          
+        <ProductCardContainer draggable="true">
+            <IconContainer onClick={() => toggleModal()}>
                 <EditIcon />
             </IconContainer>
             <img src={product_image}/>
@@ -40,9 +37,9 @@ const ProductCard = ({ name, description, price, gift, id }) => {
             <CartActionsContainer>
                 <Counter />
                 <ActionButton label="ADD"/>
-            </CartActionsContainer>
-
-        </ProductCardContainer>                    
+            </CartActionsContainer>            
+        </ProductCardContainer>   
+        </>                                     
     )
 }
 

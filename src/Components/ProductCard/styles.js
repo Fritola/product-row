@@ -1,12 +1,13 @@
 import styled from 'styled-components'
 
 export const ProductCardContainer = styled.div`
+    margin-top: 20px;
     display: flex;
     align-items: center;    
     flex-direction: column;
     width: 250px;
     height: 380px;
-    border: solid 1px #000;
+    border: solid 1px #ccc;
 `
 
 export const IconContainer = styled.div`
